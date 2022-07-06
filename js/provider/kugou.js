@@ -10,7 +10,7 @@ class kugou {
       album: song.AlbumName,
       album_id: `kgalbum_${song.AlbumID}`,
       source: 'kugou',
-      source_url: `https://www.kugou.com/song/#hash=${song.FileHash}&album_id=${song.AlbumID}`,
+      source_url: `https://www.kugou.com/song/#hash=${song.FileHash}&album_audio_id=${song.AlbumID}`,
       img_url: '',
       // url: `kgtrack_${song.FileHash}`,
       lyric_url: song.FileHash,
@@ -112,9 +112,9 @@ class kugou {
       artist: '',
       artist_id: '',
       album: '',
-      album_id: `kgalbum_${item.album_id}`,
+      album_id: `kgalbum_${item.album_audio_id}`,
       source: 'kugou',
-      source_url: `https://www.kugou.com/song/#hash=${hash}&album_id=${item.album_id}`,
+      source_url: `https://www.kugou.com/song/#hash=${hash}&album_audio_id=${item.album_audio_id}`,
       img_url: '',
       lyric_url: hash,
     };
@@ -130,7 +130,7 @@ class kugou {
         // track['img_url'] = data.imgUrl.replace('{size}', '400');
       }
       // Fix album
-      target_url = `http://mobilecdnbj.kugou.com/api/v3/album/info?albumid=${item.album_id}`;
+      target_url = `http://mobilecdnbj.kugou.com/api/v3/album/info?albumid=${item.album_audio_id}`;
       axios.get(target_url).then((res) => {
         const { data: res_data } = res;
         if (
@@ -192,9 +192,9 @@ class kugou {
       artist: '',
       artist_id: info.id,
       album: '',
-      album_id: `kgalbum_${item.album_id}`,
+      album_id: `kgalbum_${item.album_audio_id}`,
       source: 'kugou',
-      source_url: `https://www.kugou.com/song/#hash=${item.hash}&album_id=${item.album_id}`,
+      source_url: `https://www.kugou.com/song/#hash=${item.hash}&album_id=${item.album_audio_id}`,
       img_url: '',
       // url: `kgtrack_${item.hash}`,
       lyric_url: item.hash,
@@ -208,7 +208,7 @@ class kugou {
     }`;
     axios
       .get(
-        `http://mobilecdnbj.kugou.com/api/v3/album/info?albumid=${item.album_id}`
+        `http://mobilecdnbj.kugou.com/api/v3/album/info?albumid=${item.album_audio_id}`
       )
       .then((response) => {
         const { data } = response;
@@ -331,9 +331,9 @@ class kugou {
       artist: '',
       artist_id: '',
       album: info.title,
-      album_id: `kgalbum_${album_id}`,
+      album_id: `kgalbum_${album_audio_id}`,
       source: 'kugou',
-      source_url: `https://www.kugou.com/song/#hash=${item.hash}&album_id=${album_id}`,
+      source_url: `https://www.kugou.com/song/#hash=${item.hash}&album_audio_id=${album_audio_id}`,
       img_url: '',
       // url: `xmtrack_${item.hash}`,
       lyric_url: item.hash,
